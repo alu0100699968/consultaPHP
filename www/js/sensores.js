@@ -50,9 +50,9 @@ function onError() {
 }
 
 function onSuccessGPS(position) {
-  var element = document.getElementById('geolocation');
+  /*var element = document.getElementById('geolocation');
   element.innerHTML = 'Latitud: ' + position.coords.latitude + '<br />' +
-    'Longitud: ' + position.coords.longitude + '<br />';
+    'Longitud: ' + position.coords.longitude + '<br />';*/
 
   getReverseGeocodingData(position.coords.latitude, position.coords.longitude);
 }
@@ -67,9 +67,13 @@ function getReverseGeocodingData(lat, lng) {
         }
         // This is checking to see if the Geocode Status is OK before proceeding
         if (status == google.maps.GeocoderStatus.OK) {
-            //console.log(results);
-            var address = (results[0].formatted_address);
+            for(var i = 0; i < results[0].address_components.length; i++) {
+              var found = $.inArray('administrative_area_level_2', results[0].address_components[i].types);
+              if(found > -1)
+                var address = results[0].address_components[i].long_name;
+            }
             document.getElementById('position').innerHTML = address;
+            document.getElementById('oculto').style.display = 'inline';
         }
     });
 }

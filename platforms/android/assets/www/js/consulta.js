@@ -1,36 +1,37 @@
 $(document).ready(function() {
   $('.button').click(function() {
     var bla = $('#texto').val();
+    var sitio = $('#position').text();
     $.ajax({
       url: 'http://pr0poise.esy.es/test.php',
       type: 'post',
       data: {
-        "action": bla
+        "action": bla,
+        "action2": sitio
       },
       success: function(response) {
         //window.alert(response);
-        console.log(JSON.parse(response).Nombre);
+        console.log(JSON.parse(response));
         //$('#resultados').text(JSON.stringify(JSON.parse(response), null, 4));
-        drawRow(JSON.parse(response));
+        drawTable(JSON.parse(response));
       }
     });
 
     function drawTable(data) {
+      var row = $("<tbody>")
       for (var i = 0; i < data.length; i++) {
-        drawRow(data[i]);
+        drawRow(data[i], row);
       }
     }
 
-    function drawRow(rowData) {
-      var row = $("<tbody>")
-      var roww =$("<tr>")
+    function drawRow(rowData, row) {
+      var roww = $("<tr>")
       $("#personDataTable").append(row);
-      roww.append($('<td><b class="ui-table-cell-label">ID</b>' + rowData.ID + "</td>"));
       roww.append($('<td><b class="ui-table-cell-label">Nombre</b>' + rowData.Nombre + "</td>"));
-      roww.append($('<td><b class="ui-table-cell-label">Descripción</b>' + rowData.Descripcion + "</td>"));
-      roww.append($('<td><b class="ui-table-cell-label">Precio</b>' + rowData.Precio + "</td>"));
-      roww.append($('<td><b class="ui-table-cell-label">Stock</b>' + rowData.Stock + "</td></t"));
+      roww.append($('<td><b class="ui-table-cell-label">Calle</b>' + rowData.Calle + "</td>"));
+      roww.append($('<td><b class="ui-table-cell-label">Teléfono</b>' + rowData.Telefono + "</td>"));
       row.append(roww);
+      console.log("pepe");
       console.log(row);
     }
   });

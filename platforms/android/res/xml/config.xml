@@ -6,13 +6,13 @@
         <param name="onload" value="true" />
     </feature>
     <allow-intent href="market:*" />
-    <name>Hello World</name>
+    <name>Consulta PHP</name>
     <description>
-        Hello World sample application that responds to the deviceready event.
-    </description>
-    <author email="support@phonegap.com" href="http://phonegap.com">
-        PhoneGap Team
-    </author>
+    Aplicación para realizar consultas a una base de datos remota y para testear los sensores del teléfono.
+  </description>
+    <author email="alu0100699968@ull.edu.es" href="https://github.com/alu0100699968/consultaPHP">
+    Sergio
+  </author>
     <content src="index.html" />
     <preference name="permissions" value="none" />
     <preference name="orientation" value="default" />
@@ -73,6 +73,7 @@
     <gap:splash gap:platform="ios" height="768" src="www/res/screen/ios/screen-ipad-landscape.png" width="1024" />
     <gap:splash gap:platform="winphone" src="www/res/screen/windows-phone/screen-portrait.jpg" />
     <access origin="*" />
+    <allow-navigation href="http://*/*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
